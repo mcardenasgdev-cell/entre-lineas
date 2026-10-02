@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0D0D0D">
+<title>Entre líneas · Autoexploración y consentimiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#0d0d0d;--surface:#171416;--wine:#6b0f1a;--rose:#e8a5c8;--text:#f5f5f5;--muted:#bab0b6;--line:#393035}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.7 Montserrat,Arial,sans-serif}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--rose);outline-offset:5px}a{color:var(--rose)}[hidden]{display:none!important}.shell{max-width:1180px;margin:auto;padding:0 40px}header{height:100px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.brand{font:600 25px 'Playfair Display',Georgia,serif;letter-spacing:-1px}.brand span{color:var(--rose)}.eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);font-weight:600}.privacy{font-size:12px;color:var(--muted)}main{min-height:calc(100vh - 190px)}.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:90px;padding:80px 0 65px;align-items:center}h1,h2,h3,p{margin-top:0}h1{font:500 clamp(46px,5.7vw,76px)/1.12 'Playfair Display',Georgia,serif;letter-spacing:-2px;margin:22px 0 28px}h1 em{color:var(--rose);font-weight:500}h2{font:500 38px/1.25 'Playfair Display',Georgia,serif}h3{font-size:17px}p{max-width:70ch}.lead{color:var(--muted);font-size:16px;max-width:52ch}.btn{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:48px;padding:12px 22px;border-radius:7px;background:var(--rose);color:#24131c;border:1px solid transparent;font-weight:600;transition:background .2s,transform .2s}.btn:hover:not(:disabled){background:#f3bedb;transform:translateY(-1px)}.secondary{color:var(--text);background:transparent;border-color:var(--line)}.secondary:hover:not(:disabled){background:#2a2227}.text-btn{border:0;background:none;color:var(--muted);padding:10px;text-decoration:underline;text-underline-offset:4px}.check{display:flex;gap:12px;align-items:flex-start;margin:25px 0 20px;font-size:12px;color:var(--muted);max-width:50ch}.check input{accent-color:var(--rose);width:18px;height:18px;flex-shrink:0}.art{position:relative;height:380px;display:grid;place-items:center;background:radial-gradient(ellipse at center,#40152166,transparent 68%)}.orbit{position:absolute;border:1px solid #815362;border-radius:50%;width:215px;height:305px;transform:rotate(38deg)}.orbit:nth-child(2){transform:rotate(-38deg);border-color:#e8a5c88a}.orbit:nth-child(3){width:145px;height:235px;transform:rotate(38deg);border-color:#e8a5c833}.art-word{text-align:center;font:italic 29px 'Playfair Display',serif;background:var(--bg);padding:12px 22px;z-index:1}.art-caption{position:absolute;bottom:0;color:var(--muted);font-size:10px;letter-spacing:3px}.facts{display:flex;gap:28px;padding:22px 0;border-block:1px solid var(--line);color:var(--muted);font-size:12px}.facts strong{color:var(--text);font-weight:500}.method{padding:35px 0 55px;display:grid;grid-template-columns:1fr 2fr;gap:50px}.method p{font-size:13px;color:var(--muted)}footer{border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;font-size:11px;color:var(--muted);gap:20px}.test{max-width:860px;margin:auto;padding:42px 0 60px}.progress-top{display:flex;justify-content:space-between;gap:15px;font-size:12px;color:var(--muted)}progress{appearance:none;width:100%;height:5px;border:0;display:block;margin:13px 0 18px;border-radius:4px;overflow:hidden;background:#2a2a2a}progress::-webkit-progress-bar{background:#2a2a2a}progress::-webkit-progress-value{background:var(--rose);box-shadow:0 0 12px var(--rose);transition:width .3s}progress::-moz-progress-bar{background:var(--rose)}.route{font-size:12px;color:var(--muted);margin-bottom:38px}.question{border:0;padding:0;margin:0;min-width:0}.question legend{font:500 30px/1.4 'Playfair Display',Georgia,serif;margin:14px 0 26px;width:100%}.options{display:grid;gap:10px}.option{display:flex;align-items:center;gap:16px;padding:14px 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface);cursor:pointer;transition:border-color .2s,background .2s}.option:hover{border-color:#a5768e}.option:has(input:checked){background:#3a1c29;border-color:var(--rose)}.option input{accent-color:var(--rose);width:18px;height:18px;margin:0}.option .number{color:var(--rose);font-size:12px}.option .detail{color:var(--muted);font-size:12px;margin-left:auto}.navigation{display:flex;justify-content:space-between;gap:15px;margin-top:28px}.test-note{font-size:12px;color:var(--muted);margin:23px 0}.jump{margin:25px 0}.jump summary{cursor:pointer;color:var(--muted);font-size:12px}.jump-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:15px}.jump-grid button{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:4px;padding:7px 0}.jump-grid button.answered{background:#422330;color:var(--rose)}.jump-grid button.current{outline:2px solid var(--rose)}.results{padding:55px 0}.result-header{max-width:800px}.result-header h1{font-size:52px}.result-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:65px;margin:40px 0}.metric{margin:0 0 21px}.metric-label{display:flex;justify-content:space-between;gap:20px;font-size:13px}.bar{height:7px;background:#2a2528;border-radius:4px;margin-top:9px;overflow:hidden}.bar span{display:block;height:100%;background:var(--rose)}.guidance{border-top:1px solid var(--line);padding-top:22px}.guidance p,.guidance li{font-size:13px;color:var(--muted)}ul{padding-left:20px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tag{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:20px;color:var(--rose)}.limits{border-top:1px solid var(--line);padding-top:30px}.limits details{border-bottom:1px solid var(--line);padding:17px 0}.limits summary{cursor:pointer;font-weight:600}.limits li{padding:5px 0;color:var(--muted);font-size:13px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 12px}.status{font-size:13px;color:var(--rose);min-height:24px}.reset-box{border:1px solid var(--line);padding:20px;border-radius:8px;margin:20px 0}.reset-box p{font-size:13px}.report{background:#faf7f8;color:#271b22;font:11px/1.5 Arial,sans-serif;padding:10mm;width:190mm}.report h1{font:32px Georgia,serif;color:#6b0f1a;letter-spacing:0}.report h2{font:22px Georgia,serif;color:#6b0f1a;margin-top:24px}.report h3{color:#6b0f1a}.report table{border-collapse:collapse;width:100%;margin:12px 0;font-size:10px}.report th{background:#6b0f1a;color:#f5f5f5;text-align:left}.report td,.report th{padding:7px;border:1px solid #d5bdc9}.report tr:nth-child(even){background:#f1e3eb}.report tr,.report li{break-inside:avoid}.report h2,.report h3{break-after:avoid}.report p{max-width:none}.report-host{position:absolute;left:-10000px;top:0}noscript{display:block;padding:30px;color:var(--rose)}@media(max-width:760px){.shell{padding:0 22px}header{height:80px}.privacy{font-size:10px}.intro{grid-template-columns:1fr;gap:20px;padding:45px 0 30px}.art{height:240px;grid-row:2}.orbit{height:180px;width:130px}.orbit:nth-child(3){height:145px;width:95px}.art-word{font-size:24px}.facts{flex-wrap:wrap;gap:10px 20px}.method{grid-template-columns:1fr;gap:8px;padding-bottom:30px}.result-grid{grid-template-columns:1fr;gap:25px}.result-header h1{font-size:39px}.question legend{font-size:26px}.option{gap:10px;padding:13px}.option .detail{font-size:10px;max-width:110px;text-align:right}.option .label{font-size:12px}.jump-grid{grid-template-columns:repeat(5,1fr)}footer{flex-direction:column;gap:4px}.navigation .btn{padding:10px 15px}.test{padding-top:28px}.route{margin-bottom:26px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}@media print{body{background:#faf7f8}body>*{display:none!important}body>.report-host{display:block!important;position:static}.report{width:auto;padding:0}@page{size:A4;margin:15mm}}
+
+.learning{margin:20px 0;border:1px solid var(--line);border-radius:8px;padding:16px}.learning summary{cursor:pointer;color:var(--rose)}.learning p,.learning li{font-size:13px;color:var(--muted)}.learning p:first-child{margin-top:15px}.learning a{overflow-wrap:anywhere}.worksheet-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}.field{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)}.field.wide,.worksheet-grid>.wide{grid-column:1/-1}textarea,select,.field input{width:100%;background:#1e191c;color:var(--text);border:1px solid #685561;border-radius:6px;padding:11px;font:inherit}textarea{resize:vertical;min-height:90px;line-height:1.6}.pending{font-size:12px;color:var(--muted)}.report a{color:#6b0f1a;overflow-wrap:anywhere}.report td{overflow-wrap:anywhere}.report h2{break-before:avoid}.report-host .report{max-width:100%}@media(max-width:760px){.worksheet-grid{grid-template-columns:1fr}} 
+/* Compact summary: charts share their data with the PDF. */
+.question-fields{margin-top:20px;padding:20px;border:1px solid var(--line);border-radius:8px}.question-fields .field{margin-bottom:12px}.question-fields .field:last-child{margin-bottom:0}.chart-legend{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin-top:20px}.legend-item{display:flex;align-items:flex-start;gap:9px;font-size:12px}.swatch{width:11px;height:11px;border-radius:2px;flex-shrink:0;margin-top:5px}.legend-item strong{display:block;color:var(--text)}#pie-chart svg{display:block;width:min(100%,245px);height:auto;margin:0 auto}.summary-charts{gap:75px}.decision-area{padding:20px 0;border-bottom:1px solid var(--line)}.decision-area h3{margin-bottom:12px;color:var(--rose)}.decision-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:9px 0;font-size:13px}.decision-row button{padding:0;text-align:left;background:none;border:0;color:var(--text);text-decoration:underline;text-decoration-color:#65505e;text-underline-offset:4px}.decision-row small{grid-column:1/-1;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.decision-state{font-size:11px;font-weight:600;text-align:right}.decision-state.yes{color:#8bcdb4}.decision-state.no{color:#ee9bb5}.decision-state.conditional{color:#e6c28b}.decision-state.unknown{color:var(--muted)}#expectations{display:grid;grid-template-columns:1fr 1fr;gap:0 45px}.report{font-size:10px}.report-page{break-after:page;page-break-after:always}.report-page:last-child{break-after:auto;page-break-after:auto}.report-charts{display:grid;grid-template-columns:1fr 1fr;gap:30px}.report-charts svg{width:180px;height:180px}.report .chart-legend{gap:6px;font-size:9px}.report .legend-item strong{color:#271b22}.report .bar{background:#e4dce0}.report .bar span{background:#6b0f1a}.report .metric-label{font-size:10px}.report .metric{margin-bottom:14px}.report .pending{font-size:8px;color:#55434d}.report .decision-area h3{font-size:12px;color:#6b0f1a}.report-decisions{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.report .decision-row{font-size:9px;gap:6px;padding:6px 0}.report .decision-state{font-size:8px}.report .decision-area{padding:6px 0;border-color:#dacbd2;break-inside:avoid}.report .decision-state.yes{color:#176344}.report .decision-state.no{color:#941936}.report .decision-state.conditional{color:#765010}.report .decision-state.unknown{color:#655763}.report h2{font-size:21px}.report h3{font-size:13px}.report .chart-legend .legend-item{font-size:9px}.report li{margin-bottom:7px;white-space:pre-wrap;overflow-wrap:anywhere}.report .compact-disclaimer{font-size:9px;color:#55434d}.report-page svg{max-width:100%}@media(max-width:760px){#expectations{grid-template-columns:1fr}.summary-charts{gap:30px}.decision-row{font-size:12px}.question-fields{padding:15px}.chart-legend{gap:10px}h2{font-size:30px}}@media print{.report-charts,.report-decisions{display:grid}.report{width:100%;padding:0}.report-page{min-height:240mm}.report .decision-area{padding:4px 0}.report .decision-row{padding:4px 0}}
+
+</style>
+</head>
+<body>
+<div class="shell">
+<header><div class="brand">entre líneas<span>.</span></div><span class="privacy">Preferencias claras · 18+</span></header>
+<noscript>Activa JavaScript para completar el cuestionario. Tus respuestas se procesan en tu dispositivo.</noscript>
+<main>
+<section id="intro">
+ <div class="intro"><div><div class="eyebrow">Conocerte. Decidir. Comunicar.</div><h1>Lo que quieres.<br><em>Lo que dejas fuera.</em></h1><p class="lead">Define tu perfil y concreta qué quieres incluir en una experiencia compartida. Un resumen claro de decisiones, condiciones y límites.</p><label class="check"><input type="checkbox" id="adult"><span>Confirmo que tengo 18 años o más y entiendo que este ejercicio no es una evaluación clínica.</span></label><button id="start" class="btn" disabled>Comenzar mis 80 preguntas <span aria-hidden="true">↗</span></button></div><div class="art" aria-hidden="true"><div class="orbit"></div><div class="orbit"></div><div class="orbit"></div><div class="art-word">Mi sí.<br>Mis condiciones.<br>Mi no.</div><div class="art-caption">CLARIDAD PARA CONVERSAR</div></div></div>
+ <div class="facts"><span><strong>80</strong> preguntas en total</span><span><strong>40</strong> de perfil + <strong>40</strong> decisiones concretas</span><span>PDF breve con gráficas</span></div>
+ <div class="method"><h3>Menos suposiciones.<br>Acuerdos más claros.</h3><div><p>Primero identificas tus afinidades. Después decides sobre juguetes, medidas, pinzas, contacto anal, materiales, estímulos, privacidad y cuidados. Si algo tiene condiciones, las escribes junto a esa respuesta.</p><p>El informe distingue «sí lo quiero», «solo con condiciones» y «no lo quiero». Lo pendiente queda sin definir. Describe tu disposición actual; no predice lo que ocurrirá ni sustituye el acuerdo de las personas implicadas.</p><p>Todo permanece en memoria: cerrar o recargar borra las respuestas. Las fuentes y la biblioteca PDF se cargan desde servicios externos; la aplicación no envía tus respuestas. Puedes omitir preguntas o terminar antes.</p></div></div>
+</section>
+<section id="test" class="test" hidden aria-label="Cuestionario">
+ <div class="progress-top"><span id="position"></span><span id="completion"></span></div><progress id="progress" max="80" value="0" aria-label="Preguntas completadas"></progress><p id="route" class="route"></p><div class="eyebrow" id="category"></div>
+ <fieldset class="question"><legend id="question" tabindex="-1"></legend><div id="options" class="options"></div></fieldset>
+ <div id="question-fields" class="question-fields" hidden></div><p id="question-note" class="test-note"></p>
+ <details id="question-guide" class="learning"><summary>Contexto y cuidados de este tema</summary><div id="question-guide-content"></div></details>
+ <div class="navigation"><button id="prev" class="btn secondary">← Anterior</button><button id="next" class="btn" disabled>Siguiente →</button></div>
+ <details class="jump"><summary>Revisar y navegar por el recorrido</summary><p class="test-note">Tras las primeras 15 respuestas se abre el recorrido completo.</p><div id="jump" class="jump-grid"></div></details><button id="partial" class="text-btn">Ver resumen parcial</button><button class="text-btn reset-trigger">Borrar y empezar de nuevo</button>
+</section>
+<section id="results" class="results" hidden aria-labelledby="result-title">
+ <div class="result-header"><div class="eyebrow">Tu resumen personal</div><h1 id="result-title" tabindex="-1"></h1><p id="result-description" class="lead"></p><p id="coverage" class="test-note"></p></div>
+ <div class="result-grid summary-charts"><section aria-labelledby="decisions-title"><h3 id="decisions-title">Lo que quieres incluir</h3><div id="pie-chart"></div><div id="pie-legend" class="chart-legend"></div><p class="test-note">Distribución de las 40 decisiones concretas. Un sí expresa disposición actual, no una promesa ni consentimiento futuro.</p></section><section aria-labelledby="profile-chart-title"><h3 id="profile-chart-title">Tu perfil en seis dimensiones</h3><div id="metrics"></div><p class="test-note">Promedio de interés ÷ 4 × 100. Las omisiones no puntúan. Seguridad refleja interés en conversar sobre cuidados, no preparación para practicar.</p></section></div>
+ <div class="actions"><button id="pdf" class="btn">Descargar resumen en PDF</button><button id="review" class="btn secondary">Continuar / revisar</button><button id="print" class="text-btn">Imprimir resumen</button></div><p class="test-note">Dos páginas principales con gráficas y decisiones. Se añaden solo tus condiciones y límites, sin repetir todo el cuestionario.</p><p id="pdf-status" class="status" role="status" aria-live="polite"></p>
+ <section class="limits" aria-labelledby="expectations-title"><h2 id="expectations-title">Decisiones por área</h2><p class="test-note">Cada respuesta corresponde a una propuesta concreta. «Condicionado» exige resolver lo escrito antes de planificar; «sin definir» no cuenta como sí. Puedes editar cualquier respuesta.</p><div id="expectations"></div></section>
+ <details class="learning"><summary>Condiciones generales para compartir</summary><p class="test-note">Opcional. Incluye solo lo que no hayas indicado junto a una decisión. Tus notas se incorporan completas al PDF.</p><div class="worksheet-grid"><label class="field">Palabra o señal de parada<input id="stop-note" maxlength="100" autocomplete="off"></label><label class="field">Cuidados posteriores<input id="care-note" maxlength="160" autocomplete="off"></label><label class="field wide">Otros límites o condiciones<textarea id="general-note" maxlength="300"></textarea></label></div></details>
+ <details class="learning"><summary>Ver mis 40 respuestas de perfil</summary><div id="profile-details"></div></details>
+ <details class="learning"><summary>Biblioteca educativa y metodología</summary><p class="test-note">El perfil orientativo requiere al menos tres respuestas por rol en la etapa inicial. Una diferencia de 20 puntos prioriza un rol; el umbral para destacarlo es 50%. Las etiquetas no son diagnósticos ni medidas de compatibilidad.</p><p class="test-note">SSC/RACK orientan la reducción de riesgos, sin eliminarlos. Fuentes consultadas el 1 de octubre de 2026.</p><div id="library"></div></details>
+ <button class="text-btn reset-trigger">Borrar mis respuestas</button>
+</section>
+<div id="reset-box" class="reset-box" hidden><p>¿Borrar todas tus respuestas y notas? Esta acción no se puede deshacer.</p><button id="reset-confirm" class="btn">Sí, borrar</button> <button id="reset-cancel" class="btn secondary">Conservar respuestas</button></div>
+</main><footer><span>entre líneas. · Decisiones personales, conversación compartida.</span><span>Tu sí puede cambiar. Tu no es suficiente.</span></footer>
+</div>
+
+<script>
+'use strict';
+const categories=['D/s · Dominación / Sumisión','Bondage & Restricción','Sensorial & Sado/Maso','Rol & Dinámicas Psicológicas','Cuidado / Servicio / Protocolo','Seguridad y Límites','Juguetes y accesorios','Tamaños y comodidad','Pinzas y presión','Exploración anal','Látex y materiales','Entorno sensorial','Privacidad y exposición','Dinámica y cuidados'];
+const questions = [
+{ text:'Me atrae asumir la dirección de una dinámica acordada.', category:0, role:'D', trait:'Dominación', label:'Guiar una dinámica' },
+{ text:'Me atrae ceder la dirección dentro de límites que he elegido.', category:0, role:'S', trait:'Sumisión', label:'Ceder la dirección' },
+{ text:'Disfrutaría alternar quién guía según el momento.', category:0, role:'N', trait:'Switch', label:'Alternar quién guía' },
+{ text:'Me interesa proponer reglas consensuadas para una experiencia.', category:0, role:'D', trait:'Dominación', label:'Proponer reglas' },
+{ text:'Me interesa seguir instrucciones previamente negociadas.', category:0, role:'S', trait:'Sumisión', label:'Seguir instrucciones' },
+{ text:'Prefiero explorar la conexión sin una jerarquía definida.', category:0, role:'N', trait:'Horizontalidad', label:'Conexión sin jerarquía' },
+{ text:'Me atrae sostener la responsabilidad de guiar a otra persona.', category:0, role:'D', trait:'Dominación', label:'Responsabilidad de guiar' },
+{ text:'Me atrae confiar el ritmo de una experiencia a otra persona.', category:0, role:'S', trait:'Sumisión', label:'Delegar el ritmo' },
+{ text:'Mi interés en liderar o dejarme guiar cambia según la persona.', category:0, role:'N', trait:'Switch', label:'Cambiar de rol según la persona' },
+{ text:'Me interesa diseñar una experiencia de control consensuado.', category:0, role:'D', trait:'Dominación', label:'Diseñar el control pactado' },
+{ text:'Me interesa vivir una entrega simbólica y voluntaria.', category:0, role:'S', trait:'Sumisión', label:'Entrega simbólica' },
+{ text:'Me atrae explorar roles diferentes sin elegir una etiqueta fija.', category:0, role:'N', trait:'Switch', label:'Roles sin etiqueta fija' },
+{ text:'Me resulta atractivo tomar decisiones dentro de un acuerdo de poder.', category:0, role:'D', trait:'Dominación', label:'Decidir dentro del acuerdo' },
+{ text:'Me resulta atractivo delegar decisiones concretas y reversibles.', category:0, role:'S', trait:'Sumisión', label:'Delegar decisiones concretas' },
+{ text:'Disfrutaría una dinámica donde ambas personas compartan la iniciativa.', category:0, role:'N', trait:'Horizontalidad', label:'Compartir la iniciativa' },
+{"text": "Me atrae crear composiciones con cuerdas con formación previa.", "category": 1, "role": "D", "trait": "Rigger", "label": "Crear composiciones con cuerdas"},
+{"text": "Me atrae recibir una restricción corporal previamente acordada.", "category": 1, "role": "S", "trait": "Bunny", "label": "Recibir restricción corporal"},
+{"text": "Me atrae alternar quién coloca y quién recibe cuerdas.", "category": 1, "role": "N", "trait": "Switch", "label": "Alternar roles con cuerdas"},
+{"text": "Me atraen las cuerdas como elemento visual, sin inmovilización.", "category": 1, "role": "N", "trait": "Estética", "label": "Cuerdas solo como estética"},
+{"text": "Me atrae permanecer quieto por acuerdo verbal, sin accesorios.", "category": 1, "role": "S", "trait": "Bunny", "label": "Restricción por indicación verbal"},
+{"text": "Me atrae ofrecer sensaciones intensas dentro de un rango negociado.", "category": 2, "role": "D", "trait": "Sadismo consensuado", "label": "Ofrecer intensidad consensuada"},
+{"text": "Me atrae recibir sensaciones intensas dentro de límites que he elegido.", "category": 2, "role": "S", "trait": "Masoquismo", "label": "Recibir intensidad consensuada"},
+{"text": "Me atrae guiar una experiencia de estímulos suaves.", "category": 2, "role": "D", "trait": "Sensorial", "label": "Guiar estímulos suaves"},
+{"text": "Me atrae recibir una experiencia de estímulos suaves.", "category": 2, "role": "S", "trait": "Sensorial", "label": "Recibir estímulos suaves"},
+{"text": "Me atrae una experiencia sensorial que excluya el dolor.", "category": 2, "role": "N", "trait": "Sensorial", "label": "Experiencias sin dolor"},
+{"text": "Me atrae un rol Caretaker entre adultos centrado en dar cuidado.", "category": 3, "role": "D", "trait": "Caretaker", "label": "Dar cuidado en un rol adulto"},
+{"text": "Me atrae un rol Little entre adultos, no sexual, centrado en juego y cuidado.", "category": 3, "role": "S", "trait": "Little adulto", "label": "Recibir cuidado en un rol adulto"},
+{"text": "Me atrae una dinámica de desafío juguetón con reglas acordadas.", "category": 3, "role": "N", "trait": "Desafío lúdico", "label": "Desafío juguetón pactado"},
+{"text": "Me atrae representar personajes adultos ficticios durante una dinámica.", "category": 3, "role": "N", "trait": "Rol", "label": "Personajes adultos ficticios"},
+{"text": "Me atrae incluir reconocimiento verbal positivo dentro del rol.", "category": 3, "role": "N", "trait": "Reconocimiento", "label": "Reconocimiento verbal"},
+{"text": "Me atrae ofrecer pequeños servicios elegidos libremente.", "category": 4, "role": "S", "trait": "Servicio", "label": "Ofrecer pequeños servicios"},
+{"text": "Me atrae recibir pequeños servicios previamente acordados.", "category": 4, "role": "D", "trait": "Servicio", "label": "Recibir pequeños servicios"},
+{"text": "Me atrae seguir saludos o rituales formales acordados.", "category": 4, "role": "S", "trait": "Protocolo", "label": "Seguir rituales acordados"},
+{"text": "Me atrae guiar saludos o rituales formales acordados.", "category": 4, "role": "D", "trait": "Protocolo", "label": "Guiar rituales acordados"},
+{"text": "Me atrae intercambiar cuidados sin una jerarquía fija.", "category": 4, "role": "N", "trait": "Cuidado mutuo", "label": "Intercambiar cuidados"},
+{"text": "Me interesa dejar por escrito los límites antes de una experiencia.", "category": 5, "role": "N", "trait": "Seguridad", "label": "Límites escritos"},
+{"text": "Me interesa acordar una palabra y una señal no verbal de parada.", "category": 5, "role": "N", "trait": "Seguridad", "label": "Palabra y señal de parada"},
+{"text": "Me interesa establecer pausas para comprobar cómo nos sentimos.", "category": 5, "role": "N", "trait": "Seguridad", "label": "Pausas de comprobación"},
+{"text": "Me interesa revisar riesgos y condiciones antes de decidir.", "category": 5, "role": "N", "trait": "Seguridad", "label": "Riesgos y condiciones previas"},
+{"text": "Me interesa revisar después lo vivido sin presión para repetirlo.", "category": 5, "role": "N", "trait": "Seguridad", "label": "Revisar lo vivido"},
+{"text": "¿Quieres incluir un juguete de vibración de uso externo?", "label": "Vibración externa", "category": 6, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incluir accesorios de contacto corporal sin vibración?", "label": "Accesorios sin vibración", "category": 6, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres mantener tú el control del juguete durante su uso?", "label": "Control personal del juguete", "category": 6, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres que otra persona controle un juguete durante una experiencia acordada?", "label": "Control por otra persona", "category": 6, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres compartir juguetes entre personas, con limpieza y barreras nuevas?", "label": "Compartir juguetes con barreras", "category": 6, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres fijar medidas máximas de diámetro o longitud para los accesorios que aceptarías?", "label": "Medidas máximas personales", "category": 7, "role": "N", "trait": "Decisión", "kind": "decision", "measurements": true},
+{"text": "¿Quieres utilizar accesorios de material flexible?", "label": "Accesorios flexibles", "category": 7, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres utilizar accesorios de material rígido?", "label": "Accesorios rígidos", "category": 7, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres conocer y aceptar las medidas reales antes de usar un accesorio?", "label": "Dimensiones conocidas de antemano", "category": 7, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres mantener el tamaño elegido sin que aumentarlo sea una expectativa?", "label": "Mantener tamaño sin aumentarlo", "category": 7, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres recibir presión corporal con pinzas diseñadas para ese uso?", "label": "Recibir presión con pinzas", "category": 8, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres aplicar presión con pinzas a otra persona adulta que lo haya acordado?", "label": "Aplicar presión con pinzas", "category": 8, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres usar pinzas únicamente como decoración del vestuario, sin presión corporal?", "label": "Pinzas decorativas en vestuario", "category": 8, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Aceptarías la posibilidad de marcas visibles por accesorios de presión?", "label": "Marcas visibles por presión", "category": 8, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres mantener tú el control de la retirada de los accesorios de presión que lleves?", "label": "Control personal de la retirada", "category": 8, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres recibir contacto anal externo, sin que esto incluya contacto interno?", "label": "Recibir contacto anal externo", "category": 9, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres usar un juguete diseñado para uso anal interno manteniendo tú su control?", "label": "Uso anal interno, control propio", "category": 9, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres que otra persona maneje un juguete de uso anal interno contigo, dentro de un acuerdo específico?", "label": "Uso anal interno, control ajeno", "category": 9, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres ofrecer contacto anal externo a otra persona adulta que lo haya acordado?", "label": "Ofrecer contacto anal externo", "category": 9, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres manejar un juguete de uso anal interno para otra persona adulta que lo haya acordado?", "label": "Ofrecer uso de juguete anal", "category": 9, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres llevar prendas de látex en contacto con la piel, si no hay alergia ni contraindicación conocida?", "label": "Llevar prendas de látex", "category": 10, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incorporar vestuario o accesorios sin látex?", "label": "Materiales alternativos sin látex", "category": 10, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incorporar prendas de cuero a la experiencia?", "label": "Llevar prendas de cuero", "category": 10, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incorporar accesorios metálicos diseñados para contacto corporal?", "label": "Accesorios metálicos corporales", "category": 10, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incorporar seda o tejidos suaves como parte de la experiencia?", "label": "Seda y tejidos suaves", "category": 10, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres llevar un antifaz que puedas retirar por ti mismo?", "label": "Antifaz retirable por ti", "category": 11, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres recibir contacto de distintas texturas sobre la piel?", "label": "Texturas sobre la piel", "category": 11, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incluir música a un volumen que permita comunicarse?", "label": "Música ambiental", "category": 11, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incluir iluminación tenue conservando la orientación del espacio?", "label": "Iluminación tenue", "category": 11, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incluir sorpresas elegidas únicamente de una lista aceptada de antemano?", "label": "Sorpresas de una lista acordada", "category": 11, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres que haya observadores adultos específicamente invitados y aceptados por todos?", "label": "Observadores adultos invitados", "category": 12, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres que se tomen fotografías donde pueda reconocerse tu identidad?", "label": "Fotos con identidad visible", "category": 12, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres que se tomen fotografías sin mostrar tu identidad?", "label": "Fotos sin identidad visible", "category": 12, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres que se guarden las fotografías personales que hayas autorizado?", "label": "Guardar fotografías personales", "category": 12, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres autorizar compartir fotografías con destinatarios específicos acordados por separado?", "label": "Compartir fotos con terceros", "category": 12, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres incluir lenguaje humillante limitado a palabras previamente pactadas?", "label": "Lenguaje humillante pactado", "category": 13, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres extender rituales de rol a momentos de tu rutina cotidiana expresamente acordados?", "label": "Rituales fuera de la experiencia", "category": 13, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres recibir contacto afectivo después de la experiencia?", "label": "Contacto afectivo posterior", "category": 13, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres disponer de espacio personal después de la experiencia?", "label": "Espacio personal posterior", "category": 13, "role": "N", "trait": "Decisión", "kind": "decision"},
+{"text": "¿Quieres recibir un mensaje de seguimiento al día siguiente?", "label": "Mensaje de seguimiento", "category": 13, "role": "N", "trait": "Decisión", "kind": "decision"}
+].map((q,id)=>({...q,id,kind:q.kind||'profile',label:q.label||q.text}));
+const sources={
+ toys:{title:'Planned Parenthood · Juguetes e higiene (inglés)',url:'https://www.plannedparenthood.org/learn/sex-pleasure-and-sexual-dysfunction/sex-and-pleasure/sex-toys'},
+ condoms:{title:'NHS · Preservativos y lubricación (inglés)',url:'https://www.nhs.uk/contraception/methods-of-contraception/condoms/'},
+ latex:{title:'Mayo Clinic · Alergia al látex (inglés)',url:'https://www.mayoclinic.org/diseases-conditions/latex-allergy/symptoms-causes/syc-20374287'},
+ pain:{title:'NHS · Dolor anal y cuándo pedir ayuda (inglés)',url:'https://www.nhs.uk/symptoms/anal-pain/'},
+ nerves:{title:'NHS · Hormigueo y entumecimiento (inglés)',url:'https://www.nhs.uk/symptoms/pins-and-needles/'},
+ consent:{title:'NCSF · Guía de negociación (PDF, inglés)',url:'https://ncsfreedom.org/wp-content/uploads/2023/06/Negotiation-Guide.pdf'}
+};
+const modules=[
+ {id:6,subtitle:'Control, uso externo, higiene y uso compartido',learn:[
+  'Un juguete no tiene que formar parte de una dinámica de poder. Distingue quién elige, quién controla y quién puede detenerlo.',
+  'Revisa el uso previsto y las instrucciones de limpieza del fabricante. No todos los materiales pueden limpiarse del mismo modo; los porosos pueden retener microorganismos.',
+  'Al compartir juguetes, utiliza barreras nuevas entre personas o zonas corporales y límpialos según sus instrucciones. Revisa la compatibilidad entre material, lubricante y barrera.'
+ ],talk:'¿Uso personal o compartido? ¿Quién conserva el control? ¿Qué modelo, material y plan de limpieza aceptarías?',sources:['toys','condoms']},
+ {id:7,subtitle:'Forma, diámetro, longitud y preferencias personales',learn:[
+  'No existe una medida que este cuestionario pueda declarar segura para ti. Un interés alto no permite deducir tolerancia corporal ni recomendar un tamaño.',
+  'Longitud, diámetro, forma y rigidez describen aspectos distintos. Las etiquetas comerciales «pequeño» o «grande» no sustituyen las medidas reales.',
+  'Tus límites pueden permanecer iguales o hacerse más restrictivos. No hay una meta de aumento ni una obligación de experimentar. Si hay dolor o dudas sobre tu salud, detente y consulta.'
+ ],talk:'¿Qué medidas y materiales conoces? ¿Qué queda excluido? Puedes dejar las medidas sin definir; no son una prescripción.',sources:['toys','pain']},
+ {id:8,subtitle:'Interés, zonas excluidas, marcas y retirada',learn:[
+  'Esta sección registra decisiones sobre presión, no enseña a colocar pinzas. La aplicación no establece tiempos, fuerzas ni zonas corporales seguras.',
+  'Un mecanismo regulable no garantiza seguridad. Busca formación específica antes de considerar uso corporal y no conviertas soportar dolor en una prueba de confianza.',
+  'Interrumpe ante entumecimiento, hormigueo o pérdida de sensibilidad. Si estos síntomas persisten o reaparecen, busca atención sanitaria; no los uses como indicador de progreso.'
+ ],talk:'¿Solo estética o posible contacto? ¿Qué zonas y marcas quedan excluidas? ¿Cómo se detendrá la experiencia?',sources:['nerves','consent']},
+ {id:9,subtitle:'Permisos separados, accesorios adecuados y cuidados',learn:[
+  'El contacto externo y el interno necesitan acuerdos distintos. Interesarse por uno no implica aceptar el otro.',
+  'Para uso anal, los juguetes deben estar diseñados para ello y tener una base ensanchada que impida su entrada completa. Evita objetos improvisados. Si un objeto queda retenido, busca atención médica.',
+  'Acuerda lubricación compatible, higiene y barreras. Los aceites pueden dañar los preservativos de látex. Detente ante dolor o sangrado; consulta por sangrado o molestias que no mejoran.',
+  'Busca atención urgente ante dolor anal intenso con fiebre. El sangrado abundante o que no se detiene requiere atención de emergencia local.'
+ ],talk:'¿Qué contacto se acepta y cuál no? ¿Qué barreras, control personal y condiciones necesitas? Un límite de tamaño no garantiza ausencia de lesión.',sources:['toys','condoms','pain']},
+ {id:10,subtitle:'Estética, contacto, alergias y alternativas',learn:[
+  'Que te guste la apariencia de una prenda no significa que quieras llevarla. Registra por separado preferencia estética, contacto y comodidad.',
+  'El látex de caucho natural puede causar alergias, desde picor o ronchas hasta una reacción grave. Si tienes alergia conocida, evita el látex; si sospechas una reacción, consulta y no hagas pruebas caseras de tolerancia.',
+  'La dificultad para respirar, la hinchazón de garganta o un desmayo tras la exposición requieren atención de emergencia. Identifica la composición real y considera alternativas sin látex.'
+ ],talk:'¿Hay materiales excluidos? ¿Te interesa solo mirar, llevar la prenda o incorporarla a una dinámica? ¿Puedes retirarla cuando quieras?',sources:['latex','toys']},
+ {id:11,subtitle:'Texturas, iluminación, sonido y previsibilidad',learn:[
+  'Identifica estímulos agradables, incómodos y desconocidos. No conviertas una sorpresa en permiso para una actividad nueva.',
+  'Acuerda cómo seguir comunicándote si cambian la luz, el sonido o la visión. Un guion conocido y las pausas pueden formar parte de tus condiciones.',
+  'Este módulo no incluye instrucciones para restringir la respiración ni para usar temperaturas extremas. No extrapoles sus resultados a actividades de mayor riesgo.'
+ ],talk:'¿Qué estímulos excluyes? ¿Prefieres anticipar cada cambio? ¿Qué señal de parada seguirá disponible?',sources:['consent']},
+ {id:12,subtitle:'Observadores, imágenes, identidad y datos',learn:[
+  'Decide por separado quién puede estar presente y qué puede registrarse. Consentir una experiencia no implica consentir fotografías o difusión.',
+  'Aclara destinatarios, almacenamiento y eliminación antes de producir imágenes. Compartir información digital puede hacer que pierdas el control sobre sus copias.',
+  'Tu informe contiene preferencias íntimas. Puedes compartir solo un extracto escrito por ti; descargarlo no lo hace público, pero sí deja un archivo en el dispositivo.'
+ ],talk:'¿Quién puede saberlo, verlo o guardarlo? ¿Qué datos no deseas compartir? Evita incluir nombres o información de otras personas en tus notas.',sources:['consent']},
+ {id:13,subtitle:'Condiciones, límites emocionales y cuidados posteriores',learn:[
+  'Una fantasía, curiosidad o experiencia previa no implica disposición actual. Un límite flexible significa que hay algo que hablar, no algo que persuadir.',
+  'Define palabras o temas que prefieres excluir y cómo pedir salir del rol. Puedes cambiar de opinión sin justificarlo.',
+  'Habla de compañía, espacio personal y seguimiento. Si te presionan o ignoran tu negativa, no es un fallo de tu resultado: puedes terminar la interacción y buscar apoyo.'
+ ],talk:'¿Qué no consientes? ¿Qué necesitarías para siquiera considerarlo? ¿Cómo quieres comunicarte y recibir cuidado después?',sources:['consent']}
+];
+const baseGuide={learn:['El consentimiento debe ser libre, específico y revocable. Un porcentaje no indica preparación ni sustituye una conversación.','SSC y RACK son marcos de reducción de riesgos, no garantías. Para aprender prácticas concretas busca formación cualificada.'],talk:'¿Qué te atrae, qué excluyes y qué necesitarías antes de decidir?',sources:['consent']};
+// Interest (profile) and current intent (decisions) use separate scales and calculations.
+const scale=[['Total rechazo','Límite firme'],['Poco interés','No es una prioridad'],['Curiosidad','Depende del contexto'],['Disfruto moderadamente','Afinidad'],['Me apasiona','Afinidad alta']];
+const states=[
+ {key:'yes',label:'Sí lo quiero',short:'Sí',color:'#8bcdb4',pdf:[42,115,85]},
+ {key:'conditional',label:'Solo con condiciones',short:'Condicionado',color:'#e6c28b',pdf:[164,116,43]},
+ {key:'no',label:'No lo quiero',short:'No',color:'#ee9bb5',pdf:[153,36,65]},
+ {key:'unknown',label:'Sin definir',short:'Sin definir',color:'#8e8790',pdf:[117,109,118]}
+];
+const $=id=>document.getElementById(id);
+const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const numeric=v=>Number.isInteger(v)&&v>=0&&v<=4;
+const coreQuestions=questions.filter(q=>q.kind==='profile'),decisionQuestions=questions.filter(q=>q.kind==='decision');
+let answers=Array(questions.length).fill(null),details={},notes={stop:'',care:'',general:''},order=questions.map(q=>q.id),cursor=0,route='N',exporting=false;
+function detailFor(id){return details[id]||(details[id]={condition:'',diameter:'',length:''});}
+function validMeasure(value){return value===''||Number.isFinite(Number(value))&&Number(value)>=0.1&&Math.abs(Number(value)*10-Math.round(Number(value)*10))<.00001;}
+function measurementsComplete(q){const d=detailFor(q.id);return !q.measurements||(Boolean(d.diameter||d.length)&&validMeasure(d.diameter)&&validMeasure(d.length));}
+function completed(q){const a=answers[q.id];if(a===null)return false;if(q.kind==='profile')return numeric(a)||a==='skip';if(a==='no'||a==='unknown')return true;return (a==='yes'||a==='conditional')&&measurementsComplete(q)&&(a!=='conditional'||detailFor(q.id).condition.trim().length>0);}
+function score(items){const values=items.filter(q=>q.kind==='profile').map(q=>answers[q.id]).filter(numeric);return values.length?Math.round(values.reduce((a,b)=>a+b,0)/values.length*25):null;}
+const percent=value=>value===null?'Sin datos':`${value}%`;
+function decisionState(q){const a=answers[q.id];if(a==='yes'&&!measurementsComplete(q))return 'unknown';return states.some(s=>s.key===a)?a:'unknown';}
+function responseText(q){if(q.kind==='profile')return numeric(answers[q.id])?`${answers[q.id]}/4 · ${scale[answers[q.id]][0]}`:answers[q.id]==='skip'?'Omitida':'Pendiente';return states.find(s=>s.key===decisionState(q)).label;}
+function sourceHTML(ids){return '<ul>'+ids.map(id=>`<li><a href="${sources[id].url}" target="_blank" rel="noopener noreferrer">${sources[id].title}</a></li>`).join('')+'</ul>';}
+function guideHTML(guide){return guide.learn.map(p=>`<p>${escapeHTML(p)}</p>`).join('')+sourceHTML(guide.sources);}
+function show(id){['intro','test','results'].forEach(name=>$(name).hidden=name!==id);$('reset-box').hidden=true;window.scrollTo({top:0,behavior:'instant'});}
+function inclination(){const items=questions.slice(0,15),ds=items.filter(q=>q.role==='D'),ss=items.filter(q=>q.role==='S');const d=score(ds),s=score(ss),enough=ds.filter(q=>numeric(answers[q.id])).length>=3&&ss.filter(q=>numeric(answers[q.id])).length>=3;return{d,s,enough,role:enough&&d-s>=20?'D':enough&&s-d>=20?'S':'N'};}
+function adapt(){
+ const current=order[cursor];route=inclination().role;const tail=coreQuestions.slice(15);
+ if(questions.slice(0,15).every(completed)&&route!=='N')tail.sort((a,b)=>(a.role===route?0:a.role==='N'?1:2)-(b.role===route?0:b.role==='N'?1:2)||a.id-b.id);
+ order=[...questions.slice(0,15),...tail,...decisionQuestions].map(q=>q.id);cursor=order.indexOf(current);
+}
+function renderFields(q){
+ const a=answers[q.id],d=detailFor(q.id),showCondition=q.kind==='decision'&&a==='conditional',showMeasures=q.measurements&&(a==='yes'||a==='conditional');
+ $('question-fields').hidden=!showCondition&&!showMeasures;
+ $('question-fields').innerHTML=(showCondition?`<label class="field">¿Qué condición debe cumplirse? <span>Obligatorio para registrar esta respuesta, hasta 140 caracteres.</span><textarea id="condition" maxlength="140" data-field="condition" required>${escapeHTML(d.condition)}</textarea></label>`:'')+(showMeasures?`<p class="test-note">Indica al menos una medida de accesorio. Son límites personales que tú eliges, no medidas recomendadas ni garantía de seguridad.</p><div class="worksheet-grid">${[['diameter','Diámetro máximo (cm)'],['length','Longitud máxima (cm)']].map(([field,label])=>`<label class="field">${label}<input type="number" min="0.1" step="0.1" inputmode="decimal" data-field="${field}" value="${escapeHTML(d[field])}"></label>`).join('')}</div>`:'');
+}
+function updateProgress(){
+ const count=questions.filter(completed).length;$('completion').textContent=`${count}/80 completadas`;$('progress').value=count;
+ const q=questions[order[cursor]];$('next').disabled=!completed(q);$('next').textContent=count===80?'Ver mi resumen ↗':cursor===79?'Completar pendientes →':'Siguiente →';
+ const unlocked=questions.slice(0,15).every(completed);
+ $('jump').innerHTML=order.slice(0,unlocked?80:15).map((id,i)=>`<button class="${completed(questions[id])?'answered ':''}${i===cursor?'current':''}" data-index="${i}" aria-label="Pregunta ${i+1}, ${escapeHTML(responseText(questions[id]))}" ${i===cursor?'aria-current="step"':''}>${i+1}</button>`).join('');
+}
+function renderQuestion(focus=true){
+ const q=questions[order[cursor]],decision=q.kind==='decision';$('position').textContent=`Pregunta ${cursor+1} de 80`;$('category').textContent=categories[q.category];$('question').textContent=q.text;
+ $('route').textContent=decision?'Decisiones concretas · Responde pensando en lo que quieres incluir actualmente':`Perfil personal · ${cursor<15?'Inclinación general':route==='D'?'Prioridad en guiar':route==='S'?'Prioridad en dejarte guiar':'Recorrido equilibrado'}`;
+ const options=decision?states.map(s=>[s.key,s.label,s.key==='conditional'?'Escribe tu condición':s.key==='unknown'?'No cuenta como sí':'Decisión actual']):[...scale.map((s,i)=>[String(i),s[0],s[1]]),['skip','Prefiero omitir','No puntúa']];
+ $('options').innerHTML=options.map(([value,label,subtitle])=>`<label class="option"><input type="radio" name="answer" value="${value}" ${String(answers[q.id])===value?'checked':''}><span class="label">${label}</span><span class="detail">${subtitle}</span></label>`).join('');
+ $('question-note').textContent=decision?'Declara una decisión para esta propuesta concreta. Puedes cambiarla después. Las condiciones escritas se conservan en el resumen.':'Esta escala mide afinidad, no predice acciones. Las decisiones concretas se responden en la segunda parte.';
+ $('question-guide-content').innerHTML=guideHTML(modules.find(m=>m.id===q.category)||baseGuide);$('prev').disabled=cursor===0;renderFields(q);updateProgress();
+ if(focus){$('question-guide').open=false;$('question').focus();}
+}
+$('adult').addEventListener('change',()=>{$('start').disabled=!$('adult').checked;});
+$('start').addEventListener('click',()=>{if(!$('adult').checked)return;show('test');renderQuestion();});
+$('options').addEventListener('change',e=>{if(!e.target.matches('input'))return;const q=questions[order[cursor]];answers[q.id]=q.kind==='profile'&&e.target.value!=='skip'?Number(e.target.value):e.target.value;adapt();renderFields(q);updateProgress();});
+$('question-fields').addEventListener('input',e=>{const field=e.target.dataset.field;if(!['condition','diameter','length'].includes(field))return;detailFor(order[cursor])[field]=e.target.value;updateProgress();});
+$('prev').addEventListener('click',()=>{if(cursor>0)cursor--;renderQuestion();});
+$('next').addEventListener('click',()=>{if(!completed(questions[order[cursor]]))return;if(questions.every(completed)){renderResults();return;}cursor=cursor<79?cursor+1:order.findIndex(id=>!completed(questions[id]));renderQuestion();});
+$('jump').addEventListener('click',e=>{const button=e.target.closest('button');if(button){cursor=Number(button.dataset.index);renderQuestion();}});
+$('partial').addEventListener('click',renderResults);
+function profile(){
+ const {d,s,enough}=inclination(),switchValue=score(coreQuestions.filter(q=>q.trait==='Switch'));
+ let title=!enough?'Perfil aún sin definir':d>=50&&s>=50&&Math.abs(d-s)<20?'Switch Flexible':d-s>=20&&d>=50?'Dominante':s-d>=20&&s>=50?'Sumiso':switchValue>=50?'Switch Flexible':'Exploración abierta';
+ return{title,description:!enough?'Necesitas al menos tres respuestas por rol en la etapa inicial para definir una orientación.':`Afinidad con guiar: ${percent(d)}. Afinidad con dejarte guiar: ${percent(s)}. Tus decisiones concretas aparecen por separado.`,d,s};
+}
+function coverageText(){const decisions=decisionQuestions.filter(q=>['yes','no','conditional'].includes(answers[q.id])&&completed(q)).length;return `${coreQuestions.filter(q=>numeric(answers[q.id])).length}/40 respuestas de perfil · ${decisions}/40 decisiones definidas · ${questions.filter(completed).length}/80 completadas.`;}
+function chartData(){return states.map(s=>({...s,count:decisionQuestions.filter(q=>decisionState(q)===s.key).length}));}
+function sectorPoints(cx,cy,r,start,end){const steps=Math.max(2,Math.ceil((end-start)/(Math.PI/36))),points=[[cx,cy]];for(let i=0;i<=steps;i++){const a=start+(end-start)*i/steps;points.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}return points;}
+function pieSVG(data){let angle=-Math.PI/2;const sectors=data.filter(s=>s.count).map(s=>{const end=angle+s.count/40*Math.PI*2,points=sectorPoints(120,120,108,angle,end);angle=end;return `<polygon points="${points.map(p=>p.join(',')).join(' ')}" fill="${s.color}" stroke="#171416" stroke-width="1"><title>${s.label}: ${s.count} de 40</title></polygon>`;}).join('');return `<svg viewBox="0 0 240 240" role="img" aria-label="Decisiones: ${data.map(s=>s.label+' '+s.count+' de 40').join('; ')}">${sectors}</svg>`;}
+function legendHTML(data){return data.map(s=>`<div class="legend-item"><span class="swatch" style="background:${s.color}" aria-hidden="true"></span><span>${s.label}<strong>${s.count} de 40 · ${(s.count/40*100).toLocaleString('es',{maximumFractionDigits:1})}%</strong></span></div>`).join('');}
+function profileMetrics(){return categories.slice(0,6).map((name,id)=>{const group=coreQuestions.filter(q=>q.category===id);return{name,value:score(group),count:group.filter(q=>numeric(answers[q.id])).length,total:group.length};});}
+function metricsHTML(metrics){return metrics.map(m=>`<div class="metric"><div class="metric-label"><span>${escapeHTML(m.name)}</span><strong>${percent(m.value)}</strong></div>${m.value!==null?`<div class="bar" role="meter" aria-label="${escapeHTML(m.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${m.value}"><span style="width:${m.value}%"></span></div>`:''}<small class="pending">${m.count}/${m.total} respuestas</small></div>`).join('');}
+function decisionEntries(){
+ let ref=0;return decisionQuestions.map(q=>{
+  const state=decisionState(q),a=answers[q.id],d=detailFor(q.id),parts=[];
+  if(a==='conditional')parts.push(d.condition.trim()||'Falta escribir la condición. No planificar esta propuesta todavía.');
+  if(q.measurements&&(a==='yes'||a==='conditional')){
+   if(measurementsComplete(q))parts.push(`Medidas máximas personales: ${d.diameter?'diámetro '+d.diameter+' cm':'diámetro sin definir'}; ${d.length?'longitud '+d.length+' cm':'longitud sin definir'}.`);
+   else parts.push('Falta indicar una medida válida. Esta decisión no se cuenta como sí.');
+  }
+  return{q,state,label:states.find(s=>s.key===state).short,note:parts.join(' '),ref:parts.length?`N${++ref}`:''};
+ });
+}
+function areaHTML(entries,editable=true){return modules.map(m=>`<section class="decision-area"><h3>${categories[m.id]}</h3>${entries.filter(e=>e.q.category===m.id).map(e=>`<div class="decision-row">${editable?`<button data-question="${e.q.id}" aria-label="Editar: ${escapeHTML(e.q.label)}">${escapeHTML(e.q.label)}</button>`:`<span>${escapeHTML(e.q.label)}</span>`}<span class="decision-state ${e.state}">${e.label}${e.ref?' · '+e.ref:''}</span>${editable&&e.note?`<small>${escapeHTML(e.note)}</small>`:''}</div>`).join('')}</section>`).join('');}
+function renderResults(){
+ const p=profile(),chart=chartData();$('result-title').textContent=p.title;$('result-description').textContent=p.description;$('coverage').textContent=coverageText();$('pie-chart').innerHTML=pieSVG(chart);$('pie-legend').innerHTML=legendHTML(chart);$('metrics').innerHTML=metricsHTML(profileMetrics());$('expectations').innerHTML=areaHTML(decisionEntries());
+ $('profile-details').innerHTML=coreQuestions.map(q=>`<div class="decision-row"><button data-question="${q.id}">${escapeHTML(q.text)}</button><span class="pending">${responseText(q)}</span></div>`).join('');
+ $('library').innerHTML=modules.map(m=>`<details class="learning"><summary>${categories[m.id]}</summary>${guideHTML(m)}</details>`).join('');
+ $('stop-note').value=notes.stop;$('care-note').value=notes.care;$('general-note').value=notes.general;show('results');$('result-title').focus();
+}
+function editQuestion(e){const button=e.target.closest('button[data-question]');if(!button)return;cursor=order.indexOf(Number(button.dataset.question));show('test');renderQuestion();}
+$('expectations').addEventListener('click',editQuestion);$('profile-details').addEventListener('click',editQuestion);
+[['stop-note','stop'],['care-note','care'],['general-note','general']].forEach(([id,key])=>$(id).addEventListener('input',e=>{notes[key]=e.target.value;}));
+$('review').addEventListener('click',()=>{const pending=order.findIndex(id=>!completed(questions[id]));cursor=pending>=0?pending:0;show('test');renderQuestion();});
+let resetTrigger;
+document.querySelectorAll('.reset-trigger').forEach(btn=>btn.addEventListener('click',()=>{resetTrigger=btn;$('reset-box').hidden=false;$('reset-confirm').focus();}));
+$('reset-cancel').addEventListener('click',()=>{$('reset-box').hidden=true;resetTrigger.focus();});
+$('reset-confirm').addEventListener('click',()=>{
+ answers.fill(null);details={};notes={stop:'',care:'',general:''};order=questions.map(q=>q.id);cursor=0;route='N';$('adult').checked=false;$('start').disabled=true;
+ ['options','question-fields','question-guide-content','jump','pie-chart','pie-legend','metrics','expectations','profile-details','library'].forEach(id=>$(id).replaceChildren());
+ ['question','result-title','result-description','coverage','pdf-status'].forEach(id=>$(id).textContent='');['stop-note','care-note','general-note'].forEach(id=>$(id).value='');document.querySelectorAll('.report-host').forEach(host=>host.remove());show('intro');$('adult').focus();
+});
+// One snapshot drives both PDF and print; the full question bank is deliberately not exported.
+function reportModel(){
+ const entries=decisionEntries(),annotations=entries.filter(e=>e.note).map(e=>({title:`${e.ref} · ${e.q.label}`,text:e.note}));
+ [['stop','Señal de parada'],['care','Cuidados posteriores'],['general','Otros límites y condiciones']].forEach(([key,title])=>{if(notes[key].trim())annotations.push({title,text:notes[key].trim()});});
+ const rejections=coreQuestions.filter(q=>q.category!==5&&answers[q.id]===0);
+ if(rejections.length)annotations.push({title:'Rechazos expresados en el perfil',text:rejections.map(q=>q.label).join('; ')+'.'});
+ return{profile:profile(),coverage:coverageText(),chart:chartData(),metrics:profileMetrics(),entries,annotations,date:new Date().toLocaleDateString('es')};
+}
+function reportHTML(model=reportModel()){
+ return `<article class="report"><section class="report-page"><p>ENTRE LÍNEAS · RESUMEN PERSONAL · ${model.date}</p><h1>${escapeHTML(model.profile.title)}</h1><p>${escapeHTML(model.profile.description)}</p><p>${escapeHTML(model.coverage)}</p><div class="report-charts"><div><h3>Mis 40 decisiones concretas</h3>${pieSVG(model.chart)}<div class="chart-legend">${legendHTML(model.chart)}</div></div><div><h3>Perfil de afinidad</h3>${metricsHTML(model.metrics)}</div></div><h2>Cómo leer este resumen</h2><p>Sí: quiero incluir esta propuesta. Condicionado: solo si se resuelve la condición escrita. No: no lo quiero. Sin definir: omitido, pendiente o incompleto; no cuenta como sí.</p><p class="compact-disclaimer">Disposición actual, no garantía de cumplimiento ni consentimiento futuro. Los porcentajes de afinidad no miden preparación ni compatibilidad. En seguridad no acreditan prácticas seguras. Las omisiones no puntúan. Cada persona puede retirar su consentimiento.</p></section><section class="report-page"><h2>Mis decisiones por área</h2><p class="compact-disclaimer">40 propuestas concretas. Las referencias N remiten a las notas. Las decisiones de una persona no establecen un acuerdo mutuo.</p><div class="report-decisions">${areaHTML(model.entries,false)}</div></section>${model.annotations.length?`<section class="report-page"><h2>Condiciones y límites que deben conservarse</h2><ul>${model.annotations.map(n=>`<li><strong>${escapeHTML(n.title)}</strong><br>${escapeHTML(n.text)}</li>`).join('')}</ul><p class="compact-disclaimer">Las medidas son límites personales, no recomendaciones de salud. Si una condición falta o no se cumple, esa propuesta no está acordada.</p></section>`:''}</article>`;
+}
+function printReport(){document.querySelectorAll('.report-host').forEach(host=>host.remove());const host=document.createElement('div');host.className='report-host';host.innerHTML=reportHTML();document.body.append(host);window.addEventListener('afterprint',()=>host.remove(),{once:true});window.print();}
+$('print').addEventListener('click',printReport);
+// Vector charts keep the brief report sharp, selectable, and independent of canvas limits.
+function buildPDF(model=reportModel()){
+ const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4',compress:true});
+ const clean=value=>String(value).replace(/[\u2010-\u2015]/g,'-').replace(/[“”]/g,'"').replace(/[‘’]/g,"'");
+ const font=(size=10,bold=false,color=[39,27,34])=>{doc.setFont('helvetica',bold?'bold':'normal');doc.setFontSize(size);doc.setTextColor(...color);};
+ function write(value,x,y,width=178,size=10,bold=false,color=[39,27,34]){font(size,bold,color);const lines=doc.splitTextToSize(clean(value),width);doc.text(lines,x,y,{lineHeightFactor:1.3});return y+lines.length*size*.352778*1.3;}
+ function heading(value,y){return write(value,16,y,178,20,true,[107,15,26]);}
+ // Page 1: the pie has a fixed denominator of forty direct decisions, including unresolved items.
+ write('ENTRE LÍNEAS · RESUMEN PERSONAL',16,16,150,9,true,[107,15,26]);write(model.date,168,16,30,9);
+ let y=heading(model.profile.title,31);y=write(model.profile.description,16,y+7,178,10);y=write(model.coverage,16,y+5,178,8.5);
+ write('MIS DECISIONES CONCRETAS',16,73,86,10,true);write('PERFIL DE AFINIDAD',110,73,84,10,true);
+ let angle=-Math.PI/2;
+ model.chart.filter(s=>s.count).forEach(s=>{const end=angle+s.count/40*Math.PI*2,points=sectorPoints(57,116,30,angle,end);doc.setFillColor(...s.pdf);doc.setDrawColor(250,247,248);const vectors=points.slice(1).map((p,i)=>[p[0]-points[i][0],p[1]-points[i][1]]);doc.lines(vectors,points[0][0],points[0][1],[1,1],'F',true);angle=end;});
+ let ly=161;model.chart.forEach(s=>{doc.setFillColor(...s.pdf);doc.rect(17,ly-3,3,3,'F');write(s.label,23,ly,78,9);write(`${s.count}/40 · ${(s.count*2.5).toLocaleString('es',{maximumFractionDigits:1})}%`,23,ly+5,78,9,true);ly+=16;});
+ model.metrics.forEach((m,i)=>{const by=86+i*21;write(m.name,110,by,84,8.5,true);doc.setFillColor(229,220,225);doc.rect(110,by+5,65,2.8,'F');if(m.value!==null){doc.setFillColor(107,15,26);doc.rect(110,by+5,65*m.value/100,2.8,'F');}write(percent(m.value),178,by+8,22,8.5);write(`${m.count}/${m.total} respuestas`,110,by+13,84,7.5);});
+ write('DISPOSICIÓN ACTUAL, NO GARANTÍA DE CUMPLIMIENTO',16,231,178,11,true,[107,15,26]);
+ write('Sí: quiero incluirlo. Condicionado: solo si se resuelve lo escrito. No: lo excluyo. Sin definir: pendiente, omitido o incompleto; no cuenta como sí.',16,240,178,9);
+ write('Afinidad = promedio / 4 x 100; las omisiones no puntúan. No mide experiencia, seguridad ni compatibilidad. Este resumen no establece un acuerdo mutuo. El consentimiento se confirma en cada ocasión y puede retirarse.',16,255,178,8.5);
+ // Page 2: all forty decisions, once, with short labels and references to their full conditions.
+ doc.addPage();heading('Decisiones por área',22);write('Sí / No expresan mi decisión actual. Condicionado requiere resolver la nota N indicada.',16,34,178,9);
+ modules.forEach((m,index)=>{
+  const x=index<4?16:108;let rowY=48+(index%4)*55;
+  write(categories[m.id],x,rowY,86,11,true,[107,15,26]);rowY+=9;
+  model.entries.filter(e=>e.q.category===m.id).forEach(e=>{
+   const state=states.find(s=>s.key===e.state);font(8);const labelLines=doc.splitTextToSize(clean(e.q.label),58);
+   doc.setDrawColor(229,220,225);doc.line(x,rowY+5.8,x+86,rowY+5.8);
+   write(e.q.label,x,rowY,58,8);
+   write((e.state==='conditional'?'Cond.':e.label)+(e.ref?' '+e.ref:''),x+60,rowY,26,7.5,true,state.pdf);
+   rowY+=Math.max(8,labelLines.length*3.7+1);
+  });
+ });
+ // Additional pages contain actual notes only; no truncation of safety-relevant conditions.
+ if(model.annotations.length){doc.addPage();let noteY=heading('Condiciones y límites',22)+6;noteY=write('Si una condición falta o no se cumple, esa propuesta no está acordada. Las medidas son límites personales, no recomendaciones de salud.',16,noteY,178,9)+8;
+  for(const note of model.annotations){
+   font(9,true);const titleLines=doc.splitTextToSize(clean(note.title),178);
+   if(noteY+titleLines.length*4.6+12>276){doc.addPage();noteY=heading('Condiciones y límites · continuación',22)+9;}
+   noteY=write(note.title,16,noteY,178,9,true,[107,15,26])+1.5;
+   font(9);const lines=doc.splitTextToSize(clean(note.text),178);
+   for(const line of lines){if(noteY+5>276){doc.addPage();noteY=24;}write(line,16,noteY,178,9);noteY+=4.3;}noteY+=3;
+  }
+ }
+ const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);write('ENTRE LÍNEAS · Personal · El consentimiento puede retirarse',16,289,164,8,false,[110,87,99]);font(8);doc.text(`${i} / ${pages}`,194,289,{align:'right'});}
+ return doc;
+}
+$('pdf').addEventListener('click',async()=>{
+ if(exporting)return;if(!window.jspdf?.jsPDF){$('pdf-status').textContent='No se pudo cargar la biblioteca PDF. Usa «Guardar como PDF» en el diálogo de impresión.';printReport();return;}
+ exporting=true;$('pdf').disabled=true;$('pdf-status').textContent='Preparando tu resumen…';
+ try{const doc=buildPDF();await doc.save('entre-lineas-resumen.pdf',{returnPromise:true});$('pdf-status').textContent='Resumen generado. Revisa las descargas de tu navegador.';}
+ catch(error){console.error('Error de exportación',error);$('pdf-status').textContent='No se pudo generar la descarga. Puedes usar «Imprimir resumen».';}
+ finally{exporting=false;$('pdf').disabled=false;}
+});
+
+</script>
+</body>
+</html>
